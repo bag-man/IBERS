@@ -19,12 +19,4 @@ def getData(file):
 
 quoatsFiles = getData("/ibers/ernie/home/owg1/IBERS/data/quoats")
 repoFiles = getData("/ibers/ernie/home/owg1/IBERS/data/repo")
-commonFiles = []
 
-for record in repoFiles:
-  for record2 in quoatsFiles:
-    if record['header'] == record2['header']: # and record['size'] == record2['size']: 
-      commonFiles.append(record2)
-
-for record in commonFiles:
-  print record['header']
