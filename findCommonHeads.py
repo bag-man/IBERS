@@ -1,7 +1,5 @@
-import csv
 import os
 import gzip
-
 
 def getData(file): 
   source = os.path.basename(file)
@@ -14,7 +12,6 @@ def getData(file):
     gzFile = gzip.open(filename, 'r')
     headerLine = gzFile.readline().rstrip()
     dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
-      
   
   return dataList
 

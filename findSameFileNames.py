@@ -1,4 +1,3 @@
-import csv
 import os
 import gzip
 
@@ -14,7 +13,6 @@ def getData(file):
     headerLine = gzFile.readline().rstrip()
     dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
       
-  
   return dataList
 
 def humanSize(num):
