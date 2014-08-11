@@ -11,14 +11,15 @@ def getData(file):
     size = os.path.getsize(filename)
     gzFile = gzip.open(filename, 'r')
     headerLine = gzFile.readline().rstrip()
+    headerLine = headerLine
     dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
 
   file.close()
   
   return dataList
 
-quoatsFiles = getData("/ibers/ernie/home/owg1/data/quoats")
-repoFiles = getData("/ibers/ernie/home/owg1/data/repo")
+quoatsFiles = getData("/ibers/ernie/home/owg1/IBERS/data/quoats")
+repoFiles = getData("/ibers/ernie/home/owg1/IBERS/data/repo")
 commonFiles = []
 
 for record in repoFiles:

@@ -23,8 +23,8 @@ def humanSize(num):
       return "%3.1f %s" % (num, x)
     num /= 1024.0
 
-quoatsFiles = getData("/ibers/ernie/home/owg1/data/quoats")
-repoFiles = getData("/ibers/ernie/home/owg1/data/repo")
+quoatsFiles = getData("/ibers/ernie/home/owg1/IBERS/data/quoats")
+repoFiles = getData("/ibers/ernie/home/owg1/IBERS/data/repo")
 commonFiles = []
 
 for record in repoFiles:
