@@ -14,6 +14,7 @@ def getData(file):
     dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
 
   file.close()
+  gzFile.close()
       
   return dataList
 
