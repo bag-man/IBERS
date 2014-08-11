@@ -1,4 +1,5 @@
 #!/bin/bash
+rm repo* quoats*
 find  /ibers/repository/sequencer/illumina/tt* -name *.gz > repo
 find  /ibers/ernie/groups/quoats/archival-fastqs/IlluminaData/ -name *.gz > quoats
 

@@ -1,4 +1,3 @@
-#!/bin/bash/python
 import csv
 import os
 import gzip
@@ -25,10 +24,8 @@ commonFiles = []
 
 for record in repoFiles:
   for record2 in quoatsFiles:
-    if record['header'] == record2['header']: # or record['size'] == record2['size']: 
+    if record['header'] == record2['header']: #or record['size'] == record2['size']: 
       commonFiles.append(record2)
 
-count = 0
 for record in commonFiles:
-  count += 1
-  print count , record['header']
+  print record['header']
