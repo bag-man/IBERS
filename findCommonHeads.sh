@@ -1,6 +1,8 @@
 #!/bin/bash
 rm repo* quoats*
-find  /ibers/repository/sequencer/illumina/tt* -name *.gz | grep -v rawfastq > repo # Filter out rawfastq subdirs
+
+#find  /ibers/repository/sequencer/illumina/tt* -name *.gz | grep -v rawfastq > repo # Filter out rawfastq subdirs
+find  /ibers/repository/sequencer/illumina/tt* -name *.gz > repo 
 find  /ibers/ernie/groups/quoats/archival-fastqs/IlluminaData/ -name *.gz > quoats
 
 for filename in `cat quoats`; do
@@ -17,5 +19,5 @@ sort repoheads > reposort
 sort quoatsheads > quoatssort
 
 comm -12 reposort quoatssort | nl
-echo "finished"
+
 rm repo* quoats*
