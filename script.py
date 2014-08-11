@@ -10,15 +10,25 @@ def getData(file):
   dataList = []
 
   for line in file:
-      filename = line.rstrip()
-      size = os.path.getsize(filename)
-      gzFile = gzip.open(filename, 'r')
-      headerLine = gzFile.readline().rstrip()
-      dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
+    filename = line.rstrip()
+    size = os.path.getsize(filename)
+    gzFile = gzip.open(filename, 'r')
+    headerLine = gzFile.readline().rstrip()
+    dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
       
   
   return dataList
 
 quoatsFiles = getData("/ibers/ernie/home/owg1/data/quoats")
 repoFiles = getData("/ibers/ernie/home/owg1/data/repo")
-allData = quoatsFiles + repoFiles
+commonFiles = []
+
+for record in repoFiles:
+  for record2 in quoatsFiles:
+    if record['header'] == record2['header']: # or record['size'] == record2['size']: 
+      commonFiles.append(record2)
+
+count = 0
+for record in commonFiles:
+  count += 1
+  print count , record['header']
