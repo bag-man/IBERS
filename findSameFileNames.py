@@ -34,3 +34,5 @@ for record in repoFiles:
 for record in commonFiles:
   print record['filePath'] , " ", humanSize(record['size'])
 
+quoatsFiles.close()
+repoFiles.close()
