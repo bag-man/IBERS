@@ -24,7 +24,7 @@ commonFiles = []
 
 for record in repoFiles:
   for record2 in quoatsFiles:
-    if record['header'] == record2['header']: #or record['size'] == record2['size']: 
+    if record['header'] == record2['header']: # and record['size'] == record2['size']: 
       commonFiles.append(record2)
 
 for record in commonFiles:
