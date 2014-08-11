@@ -12,6 +12,8 @@ def getData(file):
     gzFile = gzip.open(filename, 'r')
     headerLine = gzFile.readline().rstrip()
     dataList.append({'filePath': filename, 'header': headerLine,  'size': size, 'source': source})
+
+  file.close()
       
   return dataList
 
@@ -33,6 +35,3 @@ for record in repoFiles:
 
 for record in commonFiles:
   print record['filePath'] , " ", humanSize(record['size'])
-
-quoatsFiles.close()
-repoFiles.close()
