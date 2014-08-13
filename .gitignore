@@ -55,3 +55,6 @@ docs/_build/
 *.tsv
 *.csv
 *.fa
+*.phr
+*.pin
+*.psq
