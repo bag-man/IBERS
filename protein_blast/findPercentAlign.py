@@ -3,15 +3,18 @@ import matplotlib.pyplot as plt
 from numpy.random import normal
 import csv
 
-barleyFile = "barley_HighConf_genes_MIPS_23Mar12_ProteinSeq.fa"
-brachyFile = "Bdistachyon_192_protein_primaryTranscriptOnly.fa"
-oatFile = "tg7_proteins_high.fa"
+# blastFile = "oatsBarleyBlast.tsv"
+# blastFile = "oatsBrachyBlast.tsv"
+# blastFile = "oatsSbiBlast.tsv"
+# blastFile = "oatsOstaviaBlast.tsv"
 
-oatsBlast = open("oatsBlast.tsv",'r')
+# dataBaseFile = "Sbicolor_79_protein_primaryTranscriptOnly.fa"
+# dataBaseFile = "barley_HighConf_genes_MIPS_23Mar12_ProteinSeq.fa"
+# dataBaseFile = "Bdistachyon_192_protein_primaryTranscriptOnly.fa"
+# dataBaseFile = "Osativa_204_protein_primaryTranscriptOnly.fa"
+
+oatsBlast = open(blastFile,'r')
 oatsBlast = csv.reader(oatsBlast, delimiter='\t')
-
-barleyBlast = open("barleyBlast.tsv",'r')
-barleyBlast = csv.reader(barleyBlast, delimiter='\t')
 
 scoreField = 4
 
@@ -38,7 +41,7 @@ def createList(fileName):
 
   return resultList
 
-brachyData = createList(brachyFile)
+inputData = createList(dataBaseFile)
 
 def testBlastFile(fileName):
   bestHits = {}
@@ -52,20 +55,13 @@ def testBlastFile(fileName):
       
   for key, value in bestHits.items():
     oatsID = bestHits[key][0]
-    brachyID = bestHits[key][1]
+    dataBaseID = bestHits[key][1]
     alignLength = float(bestHits[key][scoreField])
-    brachyGeneLength = float(brachyData[bestHits[key][1]]['len'])
+    brachyGeneLength = float(inputData[bestHits[key][1]]['len'])
     percentAlign = (alignLength / brachyGeneLength) * 100
     percAlignList.append(percentAlign)
-    print oatsID + "," + brachyID + "," + str(percentAlign)
+    print oatsID + "," + dataBaseID + "," + str(percentAlign)
 
   return percAlignList
 
 data = testBlastFile(oatsBlast)
-
-def drawHist():
-  plt.hist(data, bins=100)
-  plt.title("Oats % Alignment to Brachy")
-  plt.xlabel("Value")
-  plt.ylabel("Frequency")
-  plt.show()
