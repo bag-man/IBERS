@@ -6,7 +6,6 @@ load gene genetic map positions
 
 import sys,sqlite3,glob
 sys.path.append('../../python_lib')
-sys.path.append('../../python_lib')
 from rjv.sql import *
 from rjv.fasta import *
 
