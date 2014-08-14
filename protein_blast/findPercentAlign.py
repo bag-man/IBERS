@@ -3,6 +3,8 @@ from numpy.random import normal
 import matplotlib.pyplot as plt
 import csv, sys
 
+order = ['Barley', 'Brachypodium', 'Rice', 'Osativa']
+
 blastFiles=\
 	  '''
 	    inputs/oatsBarleyBlast.tsv
@@ -45,16 +47,19 @@ def testBlastFile(fileName):
     brachyGeneLength = float(inputData[bestHits[key][1]]['len'])
     percentAlign = (alignLength / brachyGeneLength) * 100
     bestHits[key].append(str(percentAlign))
+    bestHits[key].append(order[speciesCount])
     outputList.append(bestHits[key])
 
   return outputList
 
 output = []
+speciesCount = 0
 for blast in blastFiles:
   inputData = createList(dataBaseFiles[blastFiles.index(blast)])
   blastFile = open(blast,'r')
   blastFile = csv.reader(blastFile, delimiter='\t')
   output = testBlastFile(blastFile)
+  speciesCount += 1
   myfile = open("outputs/output.csv", 'a')
   wr = csv.writer(myfile)
   wr.writerows(output)
