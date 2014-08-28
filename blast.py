@@ -20,6 +20,14 @@ parser.add_option("--runtime", dest="runtime", help="How much runtime to allocat
 parser.add_option("--running", dest="running", action="store_true", default=False)
 
 (opt, args) = parser.parse_args()
+
+"""
+opt.qprot = "query.fa"
+opt.sprot = "subject.fa"
+opt.cluster = True
+opt.email = "garland.owen@gmail.com"
+opt.threads = 4
+"""
   
 if opt.qprot is None and opt.qnuc is None:
   print parser.print_help()
@@ -33,15 +41,6 @@ if opt.cluster:
   if not opt.threads or not opt.memory or not opt.runtime:
     print parser.print_help()
     sys.exit("Error: Cluster requires threads, memory and runtime")
-
-
-"""
-opt.qprot = "query.fa"
-opt.sprot = "subject.fa"
-opt.cluster = True
-opt.email = "garland.owen@gmail.com"
-opt.threads = 4
-"""
 
 if opt.qprot and opt.sprot:
   blast = "blastp"
@@ -60,9 +59,6 @@ elif opt.sprot and opt.qnuc:
   query = opt.qnuc
   subject = opt.sprot
 
-if opt.threads is None:
-  opt.threads = 2
-
 dbExists = os.path.isdir("database/")
 if dbExists == False:
   if opt.sprot:
@@ -71,6 +67,7 @@ if dbExists == False:
   elif opt.snuc:
     type = "nucl"
     t = "F"
+
   os.makedirs("database")
   if opt.cluster == False: 
     os.system("makeblastdb -in " + subject + " -dbtype " + type)
