@@ -77,7 +77,7 @@ if dbExists == False:
     os.system("mv " + subject + ".* database/")
   else:
     blastbin = "/cm/shared/apps/mpiblast/current/bin/"
-    os.system(blastbin + "mpiformatdb -i " + subject + " -p " + t + " -n database/ --nfrags=" + str(opt.threads)
+    os.system(blastbin + "mpiformatdb -i " + subject + " -p " + t + " -n database/ --nfrags=" + str(opt.threads))
 
 if opt.running == False: 
   if opt.cluster == False:
