@@ -89,10 +89,11 @@ if opt.running == False:
   else:
     hostname = os.popen("hostname").read().rstrip('\n')
     if hostname == "bert":
-      scriptCommand = "python " + sys.argv[0] + " --sprot " + subject + " --qprot " + query + " --threads " + str(opt.threads) + " --running"
       if opt.email:
+	scriptCommand = "python " + sys.argv[0] + " --sprot " + subject + " --qprot " + query + " --threads " + str(opt.threads) + " --memory " + opt.memory + " --runtime " + opt.runtime + " --email " + opt.email + " --running"
 	os.system("echo " + scriptCommand + " | qsub -N " + blast + " -M " + opt.email + " -m e -cwd -o log -R y -l h_vmem=" + opt.memory + ",h_rt=" + opt.runtime + " -e log -pe mpich " + str(opt.threads))
       else:
+	scriptCommand = "python " + sys.argv[0] + " --sprot " + subject + " --qprot " + query + " --threads " + str(opt.threads) + " --memory " + opt.memory + " --runtime " + opt.runtime + " --running"
 	os.system("echo " + scriptCommand + " | qsub -N " + blast + " -cwd -o log -R y -l h_vmem=" + opt.memory + ",h_rt=" + opt.runtime + " -e log -pe mpich " + str(opt.threads))
     else:
       sys.exit("Log in to bert!")
