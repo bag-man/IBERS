@@ -30,16 +30,16 @@ opt.threads = 4
 """
   
 if opt.qprot is None and opt.qnuc is None:
-  print parser.print_help()
+  parser.print_help()
   sys.exit("Error: No query provided")
 
 if opt.sprot is None and opt.snuc is None:
-  print parser.print_help()
+  parser.print_help()
   sys.exit("Error: No subject provided")
 
 if opt.cluster:
   if not opt.threads or not opt.memory or not opt.runtime:
-    print parser.print_help()
+    parser.print_help()
     sys.exit("Error: Cluster requires threads, memory and runtime")
 
 if opt.qprot and opt.sprot:
